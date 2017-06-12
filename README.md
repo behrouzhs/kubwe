@@ -33,7 +33,7 @@ Our program uses OpenMP shared memory multi-threading library which is standard 
 
 ## Running the software to train a word embedding
 
-For this purpose, you need to have a large text corpus (e.g Wikipedia) in a single text file. For instance, dump of June 1st, 2017 of Wikipedia (articles in XML format) can be downloaded at: [https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2). For the latest dump, you can always refer to [https://dumps.wikimedia.org/enwiki/latest/](https://dumps.wikimedia.org/enwiki/latest/).
+For this purpose, you need to have a large text corpus (e.g Wikipedia) in a single text file. For instance, the latest dump of Wikipedia (articles in XML format) can be downloaded at: [https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2](https://dumps.wikimedia.org/enwiki/latest/enwiki-latest-pages-articles.xml.bz2). For a more complete list please visit: [https://dumps.wikimedia.org/enwiki/latest/](https://dumps.wikimedia.org/enwiki/latest/).
 
 These types of corpuses require a lot of preprocessing such as removing HTML tags and structure to get clean text from it, handling or removing special characters, etc. We will not go through the details of preprocessing but it is a neccessary step in order to get a high quality embedding with meaningful and manageable sized vocabulary.
 
@@ -54,7 +54,7 @@ For `vocab_count` it is good to limit the vocabulary to the words occuring at le
 
 For `cooccur` you need to use a proper `-window-size`. Reasonable range for `-window-size` is between 5 and 15.
 
-For our algorithm `svdns` there are several switches that can be used:
+For our algorithm `kubwe` there are several switches that can be used:
 
 * -pmi2, -pmi10: Base 2 or base 10 Pointwise Mutual Information (PMI) calculation. If not specified, matrix factorization will be done on co-occurrence matrix rather than PMI matrix (which will be a simple SVD on co-occurrences and is not our algorithm).
 * -pmicutoff \<float\>: Using this option will set all the PMI values less than cutoff threshold to zero and the matrix will become sparser. (default: -infinity, which does not filter anything.)
@@ -67,11 +67,11 @@ For our algorithm `svdns` there are several switches that can be used:
 
 ## Pre-trained word vectors
 
-We have run our algorithm on Wikipedia dump of 20160305 and the pre-trained word vectors file `svdns_wikipedia20160305_d100` which contains the first 100,000 frequent words can be downloaded at the following link. Our trained word vectors contain 163,188 words but because of file size limitation on GitHub we removed the bottom infrequent ones.
+We have run our algorithm on Wikipedia dump of 20160305 and the pre-trained word vectors file `kubwe_wikipedia20160305_d100` which contains the first 70,000 frequent words can be downloaded at the following link. Our trained word vectors contain 163,188 words but because of file size limitation on GitHub we removed the bottom infrequent ones.
 
-[https://github.com/behrouzhs/svdns/raw/master/svdns_wikipedia20160305_d100.zip](https://github.com/behrouzhs/svdns/raw/master/svdns_wikipedia20160305_d100.zip)
+[https://github.com/behrouzhs/kubwe/raw/master/kubwe_wikipedia20160305_d100.zip](https://github.com/behrouzhs/kubwe/raw/master/kubwe_wikipedia20160305_d100.zip)
 
 ## License
 
-The algorithm borrows Singular Value Decomposition (SVD) part from SVDLIBC (open source) which is based on ATLAS (open source) linear algebra library. This software is provided for the reviewers' attention (NIPS 2017) and it will be licensed under GNU GPL. Redistributions of the software in either source code or binary form is not permitted for now.
+This software is provided for the reviewers' attention (ICDM 2017) and it will be licensed under GNU GPL. Redistributions of the software in either source code or binary form is not permitted for now.
 
