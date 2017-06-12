@@ -54,7 +54,13 @@ For `vocab_count` it is good to limit the vocabulary to the words occuring at le
 
 For `cooccur` you need to use a proper `-window-size`. Reasonable range for `-window-size` is between 5 and 15.
 
-For our algorithm `kubwe` there are several switches that can be used:
+For our algorithm, there are two parts `pmi` and `kubwe`:
+
+* pmi
+    * -pmicutoff \<float\>: Using this option will set all the PMI values less than cutoff threshold to zero and the matrix will become sparser. (default: -infinity, which does not filter anything.)
+    * -contextsmooth \<float\>: Context distribution smoothing parameter. It will raise all the context probabilities to the power of `-contextsmooth` which alleviates PMI's bias towards infrequrnt words. 0.75 has been shown to be practically a good choice. (default: 0)
+    * -input \<file\>: Specifies the input co-occurrence file. This co-occurrence file is the output of `cooccur`.
+    * -output \<file\>: Specifies the output PMI file. The resulting PMI table will be stored in this file.
 
 * -pmi2, -pmi10: Base 2 or base 10 Pointwise Mutual Information (PMI) calculation. If not specified, matrix factorization will be done on co-occurrence matrix rather than PMI matrix (which will be a simple SVD on co-occurrences and is not our algorithm).
 * -pmicutoff \<float\>: Using this option will set all the PMI values less than cutoff threshold to zero and the matrix will become sparser. (default: -infinity, which does not filter anything.)
