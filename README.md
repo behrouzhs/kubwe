@@ -1,6 +1,6 @@
-# Spectral Word Embedding with Negative Sampling
+# Kernelized Unit Ball Word Embedding (KUBWE)
 
-This software learns a word embedding from the input co-occurrence matrix (preferably extracted from a large corpus such as Wikipedia). This work is submitted to NIPS 2017 and is under review.
+This software learns a word embedding from the input co-occurrence matrix (preferably extracted from a large corpus such as Wikipedia). This work is submitted to ICDM 2017 and is under review.
 
 The following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
@@ -25,6 +25,7 @@ You can ignore `-Wall` (show all warnings), `-m64` (compile for 64-bit system), 
 To compile our program run:
 
 ```
+$ gcc -Wall -m64 -O3 pmi.c -o pmi -lm
 $ gcc -Wall -fopenmp -m64 -O3 svdns.c -o svdns -lm
 ```
 
@@ -36,15 +37,16 @@ For this purpose, you need to have a large text corpus (e.g Wikipedia) in a sing
 
 These types of corpuses require a lot of preprocessing such as removing HTML tags and structure to get clean text from it, handling or removing special characters, etc. We will not go through the details of preprocessing but it is a neccessary step in order to get a high quality embedding with meaningful and manageable sized vocabulary.
 
-After downloading and extracting the zip file, and also preprocessing steps you will get the clean text file. Let's call the clean text file `corpus_clean.txt`. In order to train and obtain a word embedding, run the following 3 commands one after another:
+After downloading and extracting the zip file, and also preprocessing steps you will get the clean text file. Let's call the clean text file `corpus_clean.txt`. In order to train and obtain a word embedding, run the following 4 commands one after another:
 
 ```
 $ ./vocab_count -min-count 5 < ./corpus_clean.txt > ./vocab.txt
 $ ./cooccur -window-size 10 -vocab-file ./vocab.txt < ./corpus_clean.txt > ./cooccurrence_matrix.bin
-$ ./svdns -pmi2 -pmicutoff -2.5 -shift 2.5 -dimension 100 -thread 8 -vocab ./vocab.txt -input ./cooccurrence_matrix.bin -output ./svdns_embedding_d100.txt
+$ ./pmi -pmicutoff 0 -contextsmooth 0.75 -input ./cooccurrence_matrix.bin -output ./pmi_matrix.bin
+$ ./kubwe -thread 16 -dim 100 -kernel 13 -input ./pmi_matrix.bin -vocab ./vocab.txt -output ./kubwe_embedding_d100.txt
 ```
 
-After running the above commands, `svdns_embedding_d100.txt` will be generated which contains the word embeddings. Each row will contain a word and its corresponding vector representation.
+After running the above commands, `kubwe_embedding_d100.txt` will be generated which contains the word embeddings. Each row will contain a word and its corresponding vector representation.
 
 ## Options and switches for executing the code
 
