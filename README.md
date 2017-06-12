@@ -58,18 +58,17 @@ For our algorithm, there are two parts `pmi` and `kubwe`:
 
 * pmi
     * -pmicutoff \<float\>: Using this option will set all the PMI values less than cutoff threshold to zero and the matrix will become sparser. (default: -infinity, which does not filter anything.)
-    * -contextsmooth \<float\>: Context distribution smoothing parameter. It will raise all the context probabilities to the power of `-contextsmooth` which alleviates PMI's bias towards infrequrnt words. 0.75 has been shown to be practically a good choice. (default: 0)
+    * -contextsmooth \<float\>: Context distribution smoothing parameter. It will raise all the context probabilities to the power of `<float>` which alleviates PMI's bias towards infrequrnt words. 0.75 has been shown to be practically a good choice. (default: 0)
     * -input \<file\>: Specifies the input co-occurrence file. This co-occurrence file is the output of `cooccur`.
     * -output \<file\>: Specifies the output PMI file. The resulting PMI table will be stored in this file.
 
-* -pmi2, -pmi10: Base 2 or base 10 Pointwise Mutual Information (PMI) calculation. If not specified, matrix factorization will be done on co-occurrence matrix rather than PMI matrix (which will be a simple SVD on co-occurrences and is not our algorithm).
-* -pmicutoff \<float\>: Using this option will set all the PMI values less than cutoff threshold to zero and the matrix will become sparser. (default: -infinity, which does not filter anything.)
-* -shift \<float\>: It will shift all the PMI values by a positive or negative value. (default: 0)
-* -dimension \<int\>: The dimensionality of the word embedding. (default: 100)
-* -thread \<int\>: The number of threads to use in parallel processing. (default: 4)
-* -vocab \<file\>: Specifies the input vocabulary file. This vocabulary file is the output of `vocab_count`.
-* -input \<file\>: Specifies the input co-occurrence file. This co-occurrence file is the output of `cooccur`.
-* -output \<file\>: Specifies the output embedding file. The resulting word vectors will be stored in this file.
+* kubwe
+    * -dim \<int\>: The dimensionality of the word embedding. (default: 100)
+    * -thread \<int\>: The number of threads to use in parallel processing. (default: 4)
+    * -kernel \<int\>: The degree of polynomial kernel to use in the method. For higher dimensional embedding, use higher kernel degrees. As a rule of thumb, it should be proportional to the log of dimensionality. (default: 1 which equals to linear kernel)
+    * -vocab \<file\>: Specifies the input vocabulary file. This vocabulary file is the output of `vocab_count`.
+    * -input \<file\>: Specifies the input PMI matrix file. This PMI matrix file is the output of `pmi`.
+    * -output \<file\>: Specifies the output embedding file. The resulting word vectors will be stored in this file.
 
 ## Pre-trained word vectors
 
