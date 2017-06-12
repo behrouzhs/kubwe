@@ -26,7 +26,7 @@ To compile our program run:
 
 ```
 $ gcc -Wall -m64 -O3 pmi.c -o pmi -lm
-$ gcc -Wall -fopenmp -m64 -O3 svdns.c -o svdns -lm
+$ gcc -Wall -fopenmp -m64 -O3 kubwe.c -o kubwe -lm
 ```
 
 Our program uses OpenMP shared memory multi-threading library which is standard and is implemented in almost every C compiler. If you ignore `-fopenmp` switch, it will run on a single thread, however, for better performance use this option.
