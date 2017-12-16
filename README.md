@@ -1,6 +1,6 @@
 # Kernelized Unit Ball Word Embedding (KUBWE)
 
-This software learns a word embedding from the input co-occurrence matrix (preferably extracted from a large corpus such as Wikipedia). This work is submitted to AAAI 2018 and is under review.
+This software learns a word embedding from the input co-occurrence matrix (preferably extracted from a large corpus such as Wikipedia). This work is submitted to NAACL 2018 and is under review.
 
 The following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
