@@ -1,6 +1,18 @@
 # Kernelized Unit Ball Word Embedding (KUBWE)
 
-This software learns a word embedding from the input co-occurrence matrix (preferably extracted from a large corpus such as Wikipedia). This work is submitted to ECML 2018 and is under review.
+This software learns a word embedding from the input co-occurrence matrix (preferably extracted from a large corpus such as Wikipedia). This work is published in AAAI 2019. Please refer to the paper for the description of the algorithm. And please don't forget to cite the paper if you use this.
+
+```
+@inproceedings{soleimani_aaai2019_fastpmiembedding,
+  title={Fast pmi-based word embedding with efficient use of unobserved patterns},
+  author={Soleimani, Behrouz Haji and Matwin, Stan},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={33},
+  number={01},
+  pages={7031--7038},
+  year={2019}
+}
+```
 
 The following instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
